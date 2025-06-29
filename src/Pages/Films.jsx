@@ -74,15 +74,15 @@ const Films = () => {
                 <p className="float-left pt-4 px-4 font-bold text-lg">
                   {item.title}
                 </p>
-                <p className="float-left pt-4 px-4 font-bold text-lg">
+
+                <p className="float-left p-4 text-lg font-bold">
+                  {item.release_date?.slice(0, 4)}
+                </p>
+                <p className="float-left pt-4 px-4 font-bold text-md max-sm:text-sm">
                   {item.genre_ids.map((each) => {
                     const getGenre = genre.find((item) => item.id === each);
                     return getGenre ? `${getGenre.name}-` : null;
                   })}
-                </p>
-
-                <p className="float-left p-4 text-lg">
-                  {item.release_date?.slice(0, 4)}
                 </p>
               </div>
               <div className="grid grid-cols-1">
