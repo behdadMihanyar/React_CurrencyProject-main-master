@@ -9,7 +9,7 @@ const Navbar = () => {
       <div>
         <nav className="flex h-15 bg-amber-500 text-white justify-between items-center py-10 rounded-b-4xl">
           <div>
-            <ul className="flex flex-row float-right pr-10 h-15 font-bold text-center gap-10">
+            <ul className="flex flex-row float-right pr-10 h-15 font-bold text-center gap-7">
               <li
                 className={
                   params === "/currency"
@@ -39,7 +39,7 @@ const Navbar = () => {
               </li>
               <li
                 className={
-                  params === "/cryptoPrice"
+                  params === "/films"
                     ? "hover:text-black leading-15 border-b"
                     : "hover:text-black leading-15 "
                 }
