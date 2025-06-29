@@ -1,0 +1,11 @@
+@import "tailwindcss";
+body {
+  background-color: #011a2e;
+  font-family: "Rubik";
+  font-weight: 500;
+}
+.toast-message {
+  color: black;
+  font-size: 18px;
+}
+/* 1e2939 */
