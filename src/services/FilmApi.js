@@ -15,6 +15,7 @@ export const fetchTrendingMovies = async (page = 1) => {
     `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`,
     tmdbRequestOptions
   );
+
   return response.data.results;
 };
 
@@ -25,4 +26,15 @@ export const fetchGeneres = async () => {
   );
   const res = await req.json();
   return res;
+};
+
+export const fetchTopMovies = async (page = 1) => {
+  console.log("fetching Top Movies");
+  const req = await fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
+    tmdbRequestOptions
+  );
+  console.log("top rated starts");
+  const res = await req.json();
+  return res.results;
 };

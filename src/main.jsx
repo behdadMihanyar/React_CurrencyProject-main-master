@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App.jsx";
 import CoinContext from "./context/CoinContext.jsx";
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <>
     <CoinContext>
       <App />
     </CoinContext>
-  </StrictMode>
+  </>
 );
