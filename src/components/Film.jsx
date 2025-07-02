@@ -19,6 +19,7 @@ const Film = ({
   selectMovie,
   setPage,
   showLess,
+  searchMovie,
 }) => {
   const [loading, isLoading] = useState(true);
   useEffect(() => {
@@ -31,11 +32,11 @@ const Film = ({
     };
     getData();
   }, [page, selectMovie]);
-  console.log(allFilms);
+  console.log(selectedGenre.length);
   return (
     <div>
       {!loading ? (
-        <div>
+        <div className={`${searchMovie && "hidden"}`}>
           <div className="flex-nowrap flex text-white justify-center gap-3 mt-8 text-center">
             <button
               value={"popular"}
@@ -132,25 +133,27 @@ const Film = ({
               )
             )}
           </div>
-          <div className="flex justify-center gap-4">
-            <p
-              className="text-center text-white cursor-pointer py-4"
-              onClick={showMore}
-            >
-              <GrLinkNext className="text-amber-300 text-2xl" />
-            </p>
-            <span className="text-center content-center text-white txt-2xl">
-              {page}
-            </span>
-            {page > 1 && (
+          {selectedGenre.length < 1 && (
+            <div className="flex justify-center gap-4">
               <p
                 className="text-center text-white cursor-pointer py-4"
-                onClick={showLess}
+                onClick={showMore}
               >
-                <GrLinkPrevious className="text-amber-300 text-2xl" />
+                <GrLinkNext className="text-amber-300 text-2xl" />
               </p>
-            )}
-          </div>
+              <span className="text-center content-center text-white txt-2xl">
+                {page}
+              </span>
+              {page > 1 && (
+                <p
+                  className="text-center text-white cursor-pointer py-4"
+                  onClick={showLess}
+                >
+                  <GrLinkPrevious className="text-amber-300 text-2xl" />
+                </p>
+              )}
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex justify-center mt-35">

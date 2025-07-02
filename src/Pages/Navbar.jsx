@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="relative">
         {!show && (
           <button
-            className="p-3 fixed top-4 left-4 z-50"
+            className="p-3 fixed top-4 left-0 z-50"
             onClick={() => setShow(true)}
           >
             <CiMenuBurger color="white" size={30} />

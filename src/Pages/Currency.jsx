@@ -39,7 +39,7 @@ const Currency = () => {
       </div>
 
       <div className="relative overflow-x-auto sm:w-full ">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-300 ">
           <tbody>
             {filterCoin.map((para) => (
               <tr className="hover:bg-cyan-900" key={para.name}>

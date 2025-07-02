@@ -31,7 +31,6 @@ const Films = () => {
     }
     return;
   };
-  console.log(searchMovie);
   return (
     <div>
       {!searchMovie && (
@@ -62,6 +61,7 @@ const Films = () => {
           selectMovie={selectMovie}
           showLess={showLess}
           setPage={setPage}
+          searchMovie={searchMovie}
         />
       ) : searchMovie === false ? (
         <Film
@@ -78,6 +78,7 @@ const Films = () => {
           selectMovie={selectMovie}
           showLess={showLess}
           setPage={setPage}
+          searchMovie={searchMovie}
         />
       ) : (
         ""
