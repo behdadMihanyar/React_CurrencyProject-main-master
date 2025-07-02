@@ -22,9 +22,7 @@ const Navbar = () => {
 
         <div
           className={`fixed top-0 left-0 w-full h-screen bg-sky-950 z-40 flex items-center justify-center transform transition-all duration-500 ease-in-out ${
-            show
-              ? "translate-x-0 opacity-100"
-              : "-translate-x-full opacity-0 pointer-events-none"
+            show ? "translate-x-0 " : "-translate-x-full pointer-events-none"
           }`}
         >
           <ul className="flex flex-col items-center justify-center space-y-4 text-2xl text-white">

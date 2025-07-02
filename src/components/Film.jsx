@@ -20,6 +20,7 @@ const Film = ({
   setPage,
   showLess,
   searchMovie,
+  setGenre,
 }) => {
   const [loading, isLoading] = useState(true);
   useEffect(() => {
@@ -42,6 +43,7 @@ const Film = ({
               value={"popular"}
               className="bg-amber-600 p-2 rounded-2xl w-30 cursor-pointer"
               onClick={() => {
+                setSelectedGenre([]);
                 setSelectMovie("popular");
                 setPage(1);
               }}
@@ -52,6 +54,7 @@ const Film = ({
               value={"top"}
               className="bg-amber-600 p-2 rounded-2xl w-30 cursor-pointer"
               onClick={() => {
+                setSelectedGenre([]);
                 setSelectMovie("");
                 setPage(1);
               }}

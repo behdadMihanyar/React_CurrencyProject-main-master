@@ -50,6 +50,7 @@ const Films = () => {
         <Film
           title="Most Popular"
           genre={genre}
+          setGenre={setGenre}
           selectedGenre={selectedGenre}
           setSelectedGenre={setSelectedGenre}
           allFilms={allFilms}
@@ -66,6 +67,7 @@ const Films = () => {
       ) : searchMovie === false ? (
         <Film
           title="Top Rated"
+          setGenre={setGenre}
           genre={genre}
           selectedGenre={selectedGenre}
           setSelectedGenre={setSelectedGenre}
