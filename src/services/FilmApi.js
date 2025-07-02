@@ -43,10 +43,11 @@ export const fetchTopMovies = async (page = 1) => {
 
 //Search by name
 export const fetchMovieByName = async (movieName) => {
-  const req = fetch(
+  const req = await fetch(
     `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`,
     tmdbRequestOptions
   );
-  const res = req.json();
+  const res = await req.json();
   console.log(res);
+  return res;
 };
