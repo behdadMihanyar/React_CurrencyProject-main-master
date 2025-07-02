@@ -28,12 +28,12 @@ const Currency = () => {
     setFilterCoin(data.filter((para) => para.name.startsWith(filter)));
   }, [filter]);
   return (
-    <div className="bg-none">
-      <div className="w-full flex justify-center mb-2">
+    <div className="bg-none max-sm:mt-15">
+      <div className="w-full flex justify-center mb-2 text-amber-50">
         <input
           type="text"
           placeholder="جست و جو ..."
-          className="m-2 border  mt-5 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="m-2 border placeholder-white mt-5 text-white text-sm rounded-lg block w-96 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 focus:text-white"
           onChange={(e) => setFilter(e.target.value)}
         />
       </div>

@@ -56,20 +56,20 @@ const Crypto = () => {
 
   return (
     <div>
-      <div className="flex justify-center gap-3 items-center my-5">
+      <div className="flex justify-center gap-3 items-center mt-20 mb-3 ">
         <input
           type="text"
           placeholder="جستجو ..."
-          className="mr-3 border border-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="mr-3 border border-white text-gray-900 text-sm rounded-lg focus:text-white block w-96 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <select
-          className="ml-3 text-amber-50"
+          className="ml-3 text-amber-50 focus:bg-black"
           onChange={(e) => setCurrency(e.target.value)}
           value={currency}
         >
-          <option>دلار</option>
+          <option className="">دلار</option>
           <option>یورو</option>
         </select>
       </div>

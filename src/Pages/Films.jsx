@@ -31,15 +31,22 @@ const Films = () => {
     }
     return;
   };
+  console.log(searchMovie);
   return (
     <div>
-      <div
-        className="fixed w-15 h-15 bottom-5 left-5"
-        onClick={() => setSearchMovie((prev) => !prev)}
-      >
-        <img src="../img/search.png" />
-      </div>
-      {searchMovie && <SearchMovie />}
+      {!searchMovie && (
+        <div
+          className="fixed w-15 h-15 bottom-5 left-5"
+          onClick={() => setSearchMovie((prev) => !prev)}
+        >
+          <img src="../img/search.png" />
+        </div>
+      )}
+      {searchMovie ? (
+        <SearchMovie show={searchMovie} setShow={setSearchMovie} />
+      ) : (
+        <SearchMovie show={searchMovie} setShow={setSearchMovie} />
+      )}
       {selectMovie === "popular" && searchMovie === false ? (
         <Film
           title="Most Popular"
