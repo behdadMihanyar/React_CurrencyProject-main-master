@@ -1,20 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
-import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from "react";
 import {
   fetchGeneres,
   fetchTrendingMovies,
   fetchTopMovies,
 } from "../services/FilmApi";
-import { toast } from "react-toastify";
-import { all } from "axios";
 import Film from "../components/Film";
+import SearchMovie from "../components/SearchMovie";
 const Films = () => {
   const [allFilms, setAllFilms] = useState([]);
   const [page, setPage] = useState(1);
   const [genre, setGenre] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [selectMovie, setSelectMovie] = useState("popular");
+  const [searchMovie, setSearchMovie] = useState(false);
 
   useEffect(() => {
     const getgenres = async () => {
@@ -35,7 +33,14 @@ const Films = () => {
   };
   return (
     <div>
-      {selectMovie === "popular" ? (
+      <div
+        className="fixed w-15 h-15 bottom-5 left-5"
+        onClick={() => setSearchMovie((prev) => !prev)}
+      >
+        <img src="../img/search.png" />
+      </div>
+      {searchMovie && <SearchMovie />}
+      {selectMovie === "popular" && searchMovie === false ? (
         <Film
           title="Most Popular"
           genre={genre}
@@ -49,8 +54,9 @@ const Films = () => {
           setSelectMovie={setSelectMovie}
           selectMovie={selectMovie}
           showLess={showLess}
+          setPage={setPage}
         />
-      ) : (
+      ) : searchMovie === false ? (
         <Film
           title="Top Rated"
           genre={genre}
@@ -64,7 +70,10 @@ const Films = () => {
           setSelectMovie={setSelectMovie}
           selectMovie={selectMovie}
           showLess={showLess}
+          setPage={setPage}
         />
+      ) : (
+        ""
       )}
     </div>
   );

@@ -1,57 +1,61 @@
 import image from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
+import { CiMenuBurger } from "react-icons/ci";
+import { useState } from "react";
+import { IoArrowBack } from "react-icons/io5";
+
 const Navbar = () => {
-  const params = useLocation().pathname;
-  console.log(params);
+  const [show, setShow] = useState(false);
+
   return (
     <>
-      <div>
-        <nav className="flex h-15 bg-amber-500 text-white justify-between items-center py-10 rounded-b-4xl">
-          <div>
-            <ul className="flex flex-row float-right pr-10 h-15 font-bold text-center gap-7">
-              <li
-                className={
-                  params === "/currency"
-                    ? "hover:text-black leading-15 border-b"
-                    : "hover:text-black leading-15 "
-                }
-              >
-                <Link to="/currency">ارز</Link>
-              </li>
-              <li
-                className={
-                  params === "/"
-                    ? "hover:text-black leading-15 border-b"
-                    : "hover:text-black leading-15 "
-                }
-              >
-                <Link to="/">سکه</Link>
-              </li>
-              <li
-                className={
-                  params === "/cryptoPrice"
-                    ? "hover:text-black leading-15 border-b"
-                    : "hover:text-black leading-15 "
-                }
-              >
-                <Link to="/cryptoPrice">ارز دیجیتال</Link>
-              </li>
-              <li
-                className={
-                  params === "/films"
-                    ? "hover:text-black leading-15 border-b"
-                    : "hover:text-black leading-15 "
-                }
-              >
-                <Link to="/films">فیلم</Link>
-              </li>
-            </ul>
-          </div>
-          <div className=" pl-10 items-center ">
-            <img src={image} className="h-12" />
-          </div>
-        </nav>
+      <div className="relative">
+        {!show && (
+          <button
+            className="p-3 fixed top-4 left-4 z-50"
+            onClick={() => setShow(true)}
+          >
+            <CiMenuBurger color="white" size={30} />
+          </button>
+        )}
+
+        <div
+          className={`fixed top-0 left-0 w-full h-screen bg-sky-950 z-40 flex items-center justify-center transform transition-all duration-500 ease-in-out ${
+            show
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-full opacity-0 pointer-events-none"
+          }`}
+        >
+          <ul className="flex flex-col items-center justify-center space-y-4 text-2xl text-white">
+            <li>
+              <Link to="/currency" onClick={() => setShow((prev) => !prev)}>
+                ارز
+              </Link>
+            </li>
+            <li>
+              <Link to="/gold" onClick={() => setShow((prev) => !prev)}>
+                سکه
+              </Link>
+            </li>
+            <li>
+              <Link to="/cryptoPrice" onClick={() => setShow((prev) => !prev)}>
+                ارز دیجیتال
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={() => setShow((prev) => !prev)}>
+                فیلم
+              </Link>
+            </li>
+            <li
+              className="mt-3 cursor-pointer"
+              onClick={() => setShow((prev) => !prev)}
+            >
+              <IoArrowBack size={28} />
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );
