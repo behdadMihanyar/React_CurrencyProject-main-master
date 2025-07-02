@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { FaLongArrowAltDown } from "react-icons/fa";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 const Currency = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
@@ -33,9 +34,12 @@ const Currency = () => {
         <input
           type="text"
           placeholder="جست و جو ..."
-          className="m-2 border placeholder-white mt-5 text-white text-sm rounded-lg block w-96 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 focus:text-white"
+          className="m-2 border placeholder-white pr-10 mt-5 text-sm rounded-lg block w-96 p-2.5 border-gray-600  focus:text-white"
           onChange={(e) => setFilter(e.target.value)}
         />
+        <span className="content-center translate-x-95 translate-y-2">
+          <FaMagnifyingGlass />
+        </span>
       </div>
 
       <div className="relative overflow-x-auto sm:w-full ">

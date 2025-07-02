@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { useCoinContext } from "../context/CoinContext";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 const Crypto = () => {
   const { coins, setCoins } = useCoinContext();
   const [page, setPage] = useState(1);
@@ -56,7 +58,7 @@ const Crypto = () => {
 
   return (
     <div>
-      <div className="flex justify-center gap-3 items-center mt-20 mb-3 ">
+      <div className="flex relative justify-center gap-3 items-center mt-20 mb-3 ">
         <input
           type="text"
           placeholder="جستجو ..."
@@ -64,6 +66,7 @@ const Crypto = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+
         <select
           className="ml-3 text-amber-50 focus:bg-black"
           onChange={(e) => setCurrency(e.target.value)}
