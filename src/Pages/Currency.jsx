@@ -37,7 +37,7 @@ const Currency = () => {
           className="m-2 border max-sm:w-90 placeholder-white pr-10 mt-5 text-sm rounded-lg block w-96 p-2.5 border-gray-600  focus:text-white"
           onChange={(e) => setFilter(e.target.value)}
         />
-        <span className="content-center translate-x-42 translate-y-8 fixed max-sm:translate-x-39">
+        <span className="content-center translate-x-42 translate-y-8 absolute max-sm:translate-x-39">
           <FaMagnifyingGlass />
         </span>
       </div>
