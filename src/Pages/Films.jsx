@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   fetchGeneres,
   fetchTrendingMovies,
@@ -6,14 +6,20 @@ import {
 } from "../services/FilmApi";
 import Film from "../components/Film";
 import SearchMovie from "../components/SearchMovie";
+import { MovieContext } from "../context/FilmContext";
+
 const Films = () => {
+  // context
   const [allFilms, setAllFilms] = useState([]);
+  //states
   const [page, setPage] = useState(1);
   const [genre, setGenre] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [selectMovie, setSelectMovie] = useState("popular");
   const [searchMovie, setSearchMovie] = useState(false);
+  const { show, setShow } = useContext(MovieContext);
 
+  //Get Genres for category
   useEffect(() => {
     const getgenres = async () => {
       let get = await fetchGeneres();
@@ -31,8 +37,10 @@ const Films = () => {
     }
     return;
   };
+
   return (
     <div>
+      {/* seacrch icon */}
       {!searchMovie && (
         <div
           className="fixed w-15 h-15 bottom-5 left-5"
@@ -46,7 +54,9 @@ const Films = () => {
       ) : (
         <SearchMovie show={searchMovie} setShow={setSearchMovie} />
       )}
-      {selectMovie === "popular" && searchMovie === false ? (
+
+      {/* Category to show */}
+      {selectMovie === "popular" && searchMovie === false && show === false ? (
         <Film
           title="Most Popular"
           genre={genre}
@@ -64,7 +74,7 @@ const Films = () => {
           setPage={setPage}
           searchMovie={searchMovie}
         />
-      ) : searchMovie === false ? (
+      ) : searchMovie === false && show === false ? (
         <Film
           title="Top Rated"
           setGenre={setGenre}

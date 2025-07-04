@@ -1,10 +1,7 @@
 import { ClipLoader } from "react-spinners";
-import { toast } from "react-toastify";
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
-
 const Film = ({
   genre,
   selectedGenre,
@@ -22,7 +19,10 @@ const Film = ({
   searchMovie,
   setGenre,
 }) => {
+  //Context
   const [loading, isLoading] = useState(true);
+
+  //Get Film data based on category "top or popular"
   useEffect(() => {
     const getData = async () => {
       const films = await fetching(page);
@@ -33,9 +33,10 @@ const Film = ({
     };
     getData();
   }, [page, selectMovie]);
-  console.log(selectedGenre.length);
+
   return (
     <div>
+      {/*switch category button*/}\
       {!loading ? (
         <div className={`${searchMovie && "hidden"}`}>
           <div className="flex-nowrap flex text-white justify-center gap-3 mt-8 text-center">
@@ -62,6 +63,8 @@ const Film = ({
               Top rated
             </button>
           </div>
+
+          {/*showing category*/}
           <div className="text-white flex flex-wrap gap-3 justify-center mt-6">
             {genre.map((item) => (
               <button
@@ -84,6 +87,7 @@ const Film = ({
             {title}
           </h1>
 
+          {/* showing "most popular" or "top-rated"*/}
           <div className="grid grid-cols-4 gap-3 text-white max-sm:grid-cols-1 p-5">
             {(selectedGenre.length === 0 ? allFilms : selectedGenre).map(
               (item) => (
@@ -136,6 +140,7 @@ const Film = ({
               )
             )}
           </div>
+          {/* showing pages */}
           {selectedGenre.length < 1 && (
             <div className="flex justify-center gap-4">
               <p

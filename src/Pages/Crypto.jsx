@@ -1,21 +1,22 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { useCoinContext } from "../context/CoinContext";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { MovieContext } from "../context/FilmContext";
 
 const Crypto = () => {
+  //context
+  const { show, setShow } = useContext(MovieContext);
   const { coins, setCoins } = useCoinContext();
+
+  //states
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [currency, setCurrency] = useState("دلار");
   const [f, setF] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(currency === "دلار");
+  //get data
   useEffect(() => {
     const fetChData = async () => {
       const req = await fetch(
@@ -57,75 +58,95 @@ const Crypto = () => {
   };
 
   return (
-    <div>
-      <div className="flex relative justify-center gap-3 items-center mt-20 mb-3 ">
-        <input
-          type="text"
-          placeholder="جستجو ..."
-          className="mr-3 border border-white placeholder-white text-white text-sm rounded-lg focus:text-white block w-96 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+    <>
+      {!show && (
+        <div>
+          <div className="flex relative justify-center gap-3 items-center mt-20 mb-3 ">
+            <input
+              type="text"
+              placeholder="جستجو ..."
+              className="mr-3 border border-white placeholder-white text-white text-sm rounded-lg focus:text-white block w-96 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
 
-        <select
-          className="ml-3 text-amber-50 focus:bg-black"
-          onChange={(e) => setCurrency(e.target.value)}
-          value={currency}
-        >
-          <option className="">دلار</option>
-          <option>یورو</option>
-        </select>
-      </div>
-      {loading ? (
-        <div className=" text-center mt-35">
-          <ClipLoader color="orange" size={100} />
-        </div>
-      ) : (
-        <TableCoin
-          f={f}
-          setF={setF}
-          currency={currency}
-          setCurrency={setCurrency}
-        />
-      )}
-      <br />
-      {!loading && (
-        <div className="flex gap-3 items-center mt-3 justify-center my-14 text-white">
-          <button
-            onClick={prevHandler}
-            className="bg-amber-600 rounded-md p-2 text-white hover:bg-amber-700 cursor-pointer"
-          >
-            قبلی
-          </button>
-          <p className={page === 1 ? "text-amber-700 font-bold txt-lg" : null}>
-            1
-          </p>
-          <p className={page === 2 ? "text-amber-700 font-bold txt-lg" : null}>
-            2
-          </p>
-
-          {page > 2 && page <= 8 && (
-            <>
-              <span>...</span>
-              <p className="text-amber-700 font-bold">{page}</p>
-            </>
+            <select
+              className="ml-3 text-amber-50 focus:bg-black"
+              onChange={(e) => setCurrency(e.target.value)}
+              value={currency}
+            >
+              <option className="">دلار</option>
+              <option>یورو</option>
+            </select>
+          </div>
+          {loading ? (
+            <div className=" text-center mt-35">
+              <ClipLoader color="orange" size={100} />
+            </div>
+          ) : (
+            <TableCoin
+              f={f}
+              setF={setF}
+              currency={currency}
+              setCurrency={setCurrency}
+            />
           )}
-          <span>...</span>
-          <p className={page === 9 ? "text-amber-700 font-bold txt-lg" : null}>
-            9
-          </p>
-          <p className={page === 10 ? "text-amber-700 font-bold txt-lg" : null}>
-            10
-          </p>
-          <button
-            onClick={nextHandler}
-            className="bg-amber-600 rounded-md p-2 text-white hover:bg-amber-700 cursor-pointer"
-          >
-            بعدی
-          </button>
+          <br />
+          {!loading && (
+            <div className="flex gap-3 items-center mt-3 justify-center my-14 text-white">
+              <button
+                onClick={prevHandler}
+                className="bg-amber-600 rounded-md p-2 text-white hover:bg-amber-700 cursor-pointer"
+              >
+                قبلی
+              </button>
+              <p
+                className={
+                  page === 1 ? "text-amber-700 font-bold txt-lg" : null
+                }
+              >
+                1
+              </p>
+              <p
+                className={
+                  page === 2 ? "text-amber-700 font-bold txt-lg" : null
+                }
+              >
+                2
+              </p>
+
+              {page > 2 && page <= 8 && (
+                <>
+                  <span>...</span>
+                  <p className="text-amber-700 font-bold">{page}</p>
+                </>
+              )}
+              <span>...</span>
+              <p
+                className={
+                  page === 9 ? "text-amber-700 font-bold txt-lg" : null
+                }
+              >
+                9
+              </p>
+              <p
+                className={
+                  page === 10 ? "text-amber-700 font-bold txt-lg" : null
+                }
+              >
+                10
+              </p>
+              <button
+                onClick={nextHandler}
+                className="bg-amber-600 rounded-md p-2 text-white hover:bg-amber-700 cursor-pointer"
+              >
+                بعدی
+              </button>
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 export default Crypto;

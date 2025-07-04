@@ -1,76 +1,96 @@
-import { useState, useEffect } from "react";
-import { FaLongArrowAltUp } from "react-icons/fa";
-import { FaLongArrowAltDown } from "react-icons/fa";
+import { useState, useEffect, useContext } from "react";
+import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { MovieContext } from "../context/FilmContext";
+
 const Currency = () => {
+  //Context
+  const { show } = useContext(MovieContext);
+  //States
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const [filterCoin, setFilterCoin] = useState([]);
+  //Get Data
   useEffect(() => {
-    try {
-      const getData = async () => {
+    const getData = async () => {
+      try {
         const req = await fetch(
           "https://brsapi.ir/Api/Market/Gold_Currency.php?key=FreeOmyTOvQelQcZdcQwNrggWfbKJKTu"
         );
         const res = await req.json();
         setData(res.currency);
         setFilterCoin(res.currency);
-      };
-      getData();
-    } catch (error) {
-      console.log("error fetching data", error.message);
-    }
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    };
+    getData();
   }, []);
-
-  console.log(filterCoin);
-
+  //Filtered Data
   useEffect(() => {
     if (filter.length === 0) return setFilterCoin(data);
     setFilterCoin(data.filter((para) => para.name.startsWith(filter)));
-  }, [filter]);
-  return (
-    <div className="bg-none max-sm:mt-15">
-      <div className="w-full flex justify-center mb-2 text-amber-50 relative">
-        <input
-          type="text"
-          placeholder="جست و جو ..."
-          className="m-2 border max-sm:w-90 placeholder-white pr-10 mt-5 text-sm rounded-lg block w-96 p-2.5 border-gray-600  focus:text-white"
-          onChange={(e) => setFilter(e.target.value)}
-        />
-        <span className="content-center translate-x-42 translate-y-8 absolute max-sm:translate-x-39">
-          <FaMagnifyingGlass />
-        </span>
-      </div>
+  }, [filter, data]);
 
-      <div className="relative overflow-x-auto sm:w-full ">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-300 ">
-          <tbody>
-            {filterCoin.map((para) => (
-              <tr className="hover:bg-cyan-900" key={para.name}>
-                <th
-                  scope="row"
-                  className="sm:gap-0 px-6 py-4 font-bold whitespace-nowrap text-white"
-                >
-                  {para.name}
-                </th>
-                <td className="px-1 py-4 flex  gap-2">
-                  <p>
-                    {para.change_percent > 0 ? (
-                      <FaLongArrowAltUp color="green" fontSize="20px" />
-                    ) : (
-                      <FaLongArrowAltDown color="red" fontSize="20px" />
-                    )}
-                  </p>
-                  <p> {` ${para.price.toLocaleString()}  `}</p>
-                </td>
-                <td className="px-6 py-4">{para.date}</td>
-                <td className="px-6 py-4">{para.time}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+  return (
+    <>
+      {!show && (
+        <div className="max-sm:mt-10 px-4 py-6">
+          {/* Search */}
+          <div className="w-full flex justify-center mb-6 relative">
+            <input
+              type="text"
+              placeholder="جست‌وجو..."
+              className="w-full max-w-md pl-4 pr-10 py-3 rounded-lg bg-gray-800 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300"
+              onChange={(e) => setFilter(e.target.value)}
+            />
+            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400">
+              <FaMagnifyingGlass />
+            </span>
+          </div>
+
+          {/* Table */}
+          <div className="relative overflow-x-auto rounded-lg shadow-md border border-gray-700">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-300">
+              <thead className="text-xs uppercase bg-gray-800 text-gray-400">
+                <tr>
+                  <th className="px-6 py-3">نام</th>
+                  <th className="px-6 py-3">قیمت</th>
+                  <th className="px-6 py-3">تاریخ</th>
+                  <th className="px-6 py-3">ساعت</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filterCoin.map((para, index) => (
+                  <tr
+                    key={para.name}
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
+                    } hover:bg-cyan-900 transition-colors duration-200`}
+                  >
+                    <td className="px-6 py-4 font-bold whitespace-nowrap text-white">
+                      {para.name}
+                    </td>
+                    <td className="px-6 py-4 flex items-center gap-2">
+                      {para.change_percent > 0 ? (
+                        <FaLongArrowAltUp className="text-green-400" />
+                      ) : (
+                        <FaLongArrowAltDown className="text-red-400" />
+                      )}
+                      <span className="text-white">
+                        {`${para.price.toLocaleString()}`}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">{para.date}</td>
+                    <td className="px-6 py-4">{para.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

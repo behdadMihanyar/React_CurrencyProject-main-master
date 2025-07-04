@@ -1,19 +1,19 @@
-import image from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router";
 import { CiMenuBurger } from "react-icons/ci";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
+import { MovieContext } from "../context/FilmContext";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
-
+  const { show, setShow } = useContext(MovieContext);
   return (
     <>
       <div>
         {!show && (
           <button
-            className="p-3 absolute top-4 left-0 z-50"
+            className="p-3 absolute top-4 left-0 z-50 cursor-pointer"
             onClick={() => setShow(true)}
           >
             <CiMenuBurger color="white" size={30} />
@@ -46,11 +46,20 @@ const Navbar = () => {
                 فیلم
               </Link>
             </li>
+
             <li
               className="mt-3 cursor-pointer"
               onClick={() => setShow((prev) => !prev)}
             >
               <IoArrowBack size={28} />
+            </li>
+            <li className="flex gap-2 mt-3">
+              <a>
+                <FaGithub color="orange" />
+              </a>
+              <a>
+                <FaLinkedin color="skyblue" />
+              </a>
             </li>
           </ul>
         </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//Headers
 export const tmdbRequestOptions = {
   method: "GET",
   headers: {
