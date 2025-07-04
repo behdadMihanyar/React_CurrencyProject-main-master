@@ -197,6 +197,7 @@ const TableCoin = ({ f, setF, currency, setCurrency }) => {
                 </span>
                 {coin.current_price.toLocaleString()}
               </td>
+
               <td className="px-6 py-4">
                 {coin.last_updated.slice(".", -5).split("T").slice(1)}
               </td>

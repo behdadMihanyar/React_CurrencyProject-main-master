@@ -7,7 +7,7 @@ import {
 import Film from "../components/Film";
 import SearchMovie from "../components/SearchMovie";
 import { MovieContext } from "../context/FilmContext";
-
+import { toast } from "react-toastify";
 const Films = () => {
   // context
   const [allFilms, setAllFilms] = useState([]);
@@ -21,6 +21,7 @@ const Films = () => {
 
   //Get Genres for category
   useEffect(() => {
+    toast("use vpn for better experience");
     const getgenres = async () => {
       let get = await fetchGeneres();
       get.genres.push({ id: 0, name: "all" });

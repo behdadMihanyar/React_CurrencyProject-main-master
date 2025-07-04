@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MovieContext } from "../context/FilmContext";
+import { toast } from "react-toastify";
 
 const Currency = () => {
   //Context
@@ -12,6 +13,7 @@ const Currency = () => {
   const [filterCoin, setFilterCoin] = useState([]);
   //Get Data
   useEffect(() => {
+    toast("Turn off vpn for better experience");
     const getData = async () => {
       try {
         const req = await fetch(

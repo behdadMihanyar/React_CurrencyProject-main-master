@@ -26,6 +26,11 @@ const Navbar = () => {
           }`}
         >
           <ul className="flex flex-col items-center justify-center space-y-4 text-2xl text-white">
+            <li className="flex gap-2 mt-3">
+              <a href="https://github.com/behdadMihanyar">
+                <FaGithub color="white" size={40} />
+              </a>
+            </li>
             <li>
               <Link to="/currency" onClick={() => setShow((prev) => !prev)}>
                 ارز
@@ -52,14 +57,6 @@ const Navbar = () => {
               onClick={() => setShow((prev) => !prev)}
             >
               <IoArrowBack size={28} />
-            </li>
-            <li className="flex gap-2 mt-3">
-              <a>
-                <FaGithub color="orange" />
-              </a>
-              <a>
-                <FaLinkedin color="skyblue" />
-              </a>
             </li>
           </ul>
         </div>
