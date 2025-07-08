@@ -6,6 +6,7 @@ const Behdad = createContext();
 
 const CoinContext = ({ children }) => {
   const [coins, setCoins] = useState([]);
+  // const [darkMode, setDarkMode] = useState(false);
 
   return (
     <Behdad.Provider value={{ coins, setCoins }}>{children}</Behdad.Provider>

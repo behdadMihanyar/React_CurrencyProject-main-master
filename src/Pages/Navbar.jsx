@@ -28,11 +28,11 @@ const Navbar = () => {
           <ul className="flex flex-col items-center justify-center space-y-4 text-2xl text-white">
             <li className="flex gap-2 mt-3">
               <a href="https://github.com/behdadMihanyar">
-                <FaGithub color="white" size={40} />
+                <FaGithub color="white  " size={40} />
               </a>
             </li>
             <li>
-              <Link to="/currency" onClick={() => setShow((prev) => !prev)}>
+              <Link to="/" onClick={() => setShow((prev) => !prev)}>
                 ارز
               </Link>
             </li>
@@ -47,7 +47,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={() => setShow((prev) => !prev)}>
+              <Link to="/film" onClick={() => setShow((prev) => !prev)}>
                 فیلم
               </Link>
             </li>

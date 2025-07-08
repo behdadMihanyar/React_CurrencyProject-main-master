@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MovieContext } from "../context/FilmContext";
-import { toast } from "react-toastify";
 
 const Currency = () => {
   //Context
@@ -13,7 +11,6 @@ const Currency = () => {
   const [filterCoin, setFilterCoin] = useState([]);
   //Get Data
   useEffect(() => {
-    toast("Turn off vpn for better experience");
     const getData = async () => {
       try {
         const req = await fetch(
@@ -37,18 +34,15 @@ const Currency = () => {
   return (
     <>
       {!show && (
-        <div className="max-sm:mt-10 px-4 py-6">
+        <div className="max-sm:mt-10 px-2 py-6">
           {/* Search */}
           <div className="w-full flex justify-center mb-6 relative">
             <input
               type="text"
               placeholder="جست‌وجو..."
-              className="w-full max-w-md pl-4 pr-10 py-3 rounded-lg bg-gray-800 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300"
+              className="w-full max-w-md pl-4 pr-3 py-3 rounded-lg bg-gray-800 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300"
               onChange={(e) => setFilter(e.target.value)}
             />
-            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400">
-              <FaMagnifyingGlass />
-            </span>
           </div>
 
           {/* Table */}
@@ -67,7 +61,7 @@ const Currency = () => {
                   <tr
                     key={para.name}
                     className={`${
-                      index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
+                      index % 2 === 0 ? "bg-gray-900/40" : "bg-gray-800"
                     } hover:bg-cyan-900 transition-colors duration-200`}
                   >
                     <td className="px-6 py-4 font-bold whitespace-nowrap text-white">

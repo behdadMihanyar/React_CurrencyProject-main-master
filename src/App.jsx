@@ -13,12 +13,13 @@ import Crypto from "./Pages/Crypto";
 import Coin from "./Pages/Coin";
 import { ToastContainer } from "react-toastify";
 import Films from "./Pages/Films";
+import Film from "./components/Film";
 const query = new QueryClient();
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route index element={<Films />} />
-      <Route path="/currency" element={<Currency />} />
+      <Route index element={<Currency />} />
+      <Route path="/film" element={<Films />} />
       <Route path="/cryptoPrice" element={<Crypto />} />
       <Route path="/coin/:id" element={<Coin />} />
       <Route path="/gold" element={<Gold />} />
