@@ -52,19 +52,8 @@ const Currency = () => {
               <thead className="text-xs uppercase bg-amber-600 text-white">
                 <tr>
                   <th className="px-6 py-3">نام</th>
-                  <th className="flex gap-2 px-6 py-3">
-                    <p className="items-center">
-                      <AiFillDollarCircle size={18} />
-                    </p>
-                    <p>قیمت</p>
-                  </th>
-                  <th className=" px-6 py-3">
-                    <p>
-                      <BsFillCalendarDateFill size={18} />
-                    </p>
-                    <p>تاریخ</p>
-                  </th>
-
+                  <th className="px-6 py-3">قیمت</th>
+                  <th className="px-6 py-3">تاریخ</th>
                   <th className="px-6 py-3">ساعت</th>
                 </tr>
               </thead>
