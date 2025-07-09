@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 import { MovieContext } from "../context/FilmContext";
-
+import { AiFillDollarCircle } from "react-icons/ai";
+import { BsFillCalendarDateFill } from "react-icons/bs";
 const Currency = () => {
   //Context
   const { show } = useContext(MovieContext);
@@ -47,12 +48,23 @@ const Currency = () => {
 
           {/* Table */}
           <div className="relative overflow-x-auto rounded-lg shadow-md border border-gray-700">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-300">
-              <thead className="text-xs uppercase bg-gray-800 text-gray-400">
+            <table className="w-full text-sm text-left rtl:text-right text-white">
+              <thead className="text-xs uppercase bg-amber-600 text-white">
                 <tr>
                   <th className="px-6 py-3">نام</th>
-                  <th className="px-6 py-3">قیمت</th>
-                  <th className="px-6 py-3">تاریخ</th>
+                  <th className="flex gap-2 px-6 py-3">
+                    <p className="items-center">
+                      <AiFillDollarCircle size={18} />
+                    </p>
+                    <p>قیمت</p>
+                  </th>
+                  <th className=" px-6 py-3">
+                    <p>
+                      <BsFillCalendarDateFill size={18} />
+                    </p>
+                    <p>تاریخ</p>
+                  </th>
+
                   <th className="px-6 py-3">ساعت</th>
                 </tr>
               </thead>
@@ -62,7 +74,7 @@ const Currency = () => {
                     key={para.name}
                     className={`${
                       index % 2 === 0 ? "bg-gray-900/40" : "bg-gray-800"
-                    } hover:bg-cyan-900 transition-colors duration-200`}
+                    } hover:bg-amber-600 transition-colors duration-200`}
                   >
                     <td className="px-6 py-4 font-bold whitespace-nowrap text-white">
                       {para.name}
@@ -77,8 +89,8 @@ const Currency = () => {
                         {`${para.price.toLocaleString()}`}
                       </span>
                     </td>
-                    <td className="px-6 py-4">{para.date}</td>
-                    <td className="px-6 py-4">{para.time}</td>
+                    <td className="px-6 py-4 text-white">{para.date}</td>
+                    <td className="px-6 py-4 text-white">{para.time}</td>
                   </tr>
                 ))}
               </tbody>

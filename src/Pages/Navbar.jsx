@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { MovieContext } from "../context/FilmContext";
 import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
 
 const Navbar = () => {
   const { show, setShow } = useContext(MovieContext);
@@ -12,16 +11,18 @@ const Navbar = () => {
     <>
       <div>
         {!show && (
-          <button
-            className="p-3 absolute top-4 left-0 z-50 cursor-pointer"
-            onClick={() => setShow(true)}
-          >
-            <CiMenuBurger color="white" size={30} />
-          </button>
+          <div>
+            <button
+              className="p-3 absolute top-4 left-0 z-50 cursor-pointer"
+              onClick={() => setShow(true)}
+            >
+              <CiMenuBurger color="white" size={30} />
+            </button>
+          </div>
         )}
 
         <div
-          className={`fixed top-0 left-0 w-full h-screen bg-sky-950 z-40 flex items-center justify-center transform transition-all duration-500 ease-in-out ${
+          className={`fixed top-0 left-0 w-full h-screen bg-amber-500 z-40 flex items-center justify-center transform transition-all duration-500 ease-in-out ${
             show ? "translate-x-0 " : "-translate-x-full pointer-events-none"
           }`}
         >
